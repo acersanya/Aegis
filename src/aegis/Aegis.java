@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.Random;
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 /**
@@ -52,6 +53,15 @@ public class Aegis {
         return result;
     }
     
+    public static short[] generateIV (){
+        short[] arrayIV = new short[16];
+        Random r =  new Random();
+        for(int i=0; i < arrayIV.length; i++){
+            arrayIV[i] = (short)r.nextInt();
+        }
+        return arrayIV;
+    }
+    
     /*
     Key generator  from string 128 bit key using SHA-1
     */
@@ -69,9 +79,8 @@ public class Aegis {
     
     public static short[] xor(short[] a, short[] b) {
         short[] result = new short[Math.min(a.length, b.length)];
-
         for (int i = 0; i < result.length; i++) {
-            result[i] = (short) (((int) a[i]) ^ ((int) b[i]));
+            result[i] = (short) (( a[i]) ^ ( b[i]));
         }
 
         return result;
