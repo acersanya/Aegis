@@ -65,7 +65,7 @@ public class Aegis {
     /*
     Key generator  from string 128 bit key using SHA-1
     */
-    public static short[] generateMessage(String keyPhrase) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public static short[] generateKey(String keyPhrase) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         byte[] key = (keyPhrase).getBytes("UTF-8");
         MessageDigest sha = MessageDigest.getInstance("SHA-1");
         key = sha.digest(key);
@@ -121,7 +121,7 @@ public class Aegis {
         }
 
         short[][] a = paddByteArray(data);
-        short[] key = generateMessage("hello");
+        short[] key = generateKey("hello");
         System.out.println(key.length);
 
     }
