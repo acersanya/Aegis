@@ -55,7 +55,6 @@ public class Aegis {
     
     /**
      * IV vector
-     *
      */
     public static short[] generateIV (){
         short[] arrayIV = new short[16];
@@ -95,7 +94,7 @@ public class Aegis {
      * @param key - input key (16 byte length)
      * @param Message  - input message - mi (16 byte length)
      */
-    public static void initializationAegis(short[] key, short[] Message){
+    public static void initializationAegis(short[] key, short[] Message,short[] IV){
         short[][] S = new short[5][16];
         S[0] = xor(key, Message);
         
@@ -109,7 +108,13 @@ public class Aegis {
         S[3] = xor(key,S[2]);
         S[4] = xor(key,S[1]);
         
-       
+       short[][] M = new short[10][128];
+       for(int i = 4; i >= 0;i++){
+           M[i] = key;
+           M[i+1] = xor(key, IV);
+       }
+        
+        
     }
     
     
