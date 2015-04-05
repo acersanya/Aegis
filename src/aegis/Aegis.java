@@ -53,6 +53,10 @@ public class Aegis {
         return result;
     }
     
+    /**
+     * IV vector
+     *
+     */
     public static short[] generateIV (){
         short[] arrayIV = new short[16];
         Random r =  new Random();
