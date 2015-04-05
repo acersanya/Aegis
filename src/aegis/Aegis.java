@@ -83,22 +83,23 @@ public class Aegis {
      * @param Message  - input message - mi (16 byte length)
      */
     public static void initializationAegis(short[] key, short[] Message){
-        short[][] S = new short[5][];
+        short[][] S = new short[5][16];
         S[0] = xor(key, Message);
         
-        for(int i=15;i<c.length-1;i++){
+        for(int i=16;i<c.length-1;i++){
             S[1][i] = c[i];
         }
-        for(int i=0;i<15;i++){
+        for(int i=0;i<16;i++){
             S[2][i]= c[i];
         }
         
         S[3] = xor(key,S[2]);
         S[4] = xor(key,S[1]);
         
-        
-        
+       
     }
+    
+    
     
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException {
