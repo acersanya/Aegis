@@ -110,8 +110,8 @@ public class Aegis {
         
        short[][] M = new short[10][128];
        for(int i = 4; i >= 0;i++){
-           M[i] = key;
-           M[i+1] = xor(key, IV);
+           M[i+6] = key;
+           M[i+1+5] = xor(key, IV);
        }
         
         
